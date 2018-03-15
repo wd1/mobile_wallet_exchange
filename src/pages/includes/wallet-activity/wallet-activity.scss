@@ -1,0 +1,34 @@
+page-wallet-activity {
+  .wallet-color-default {
+    background-color: color($colors, primary);
+  }
+
+  .copayer {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12.5px;
+    font-weight: 300;
+  }
+
+  ion-note {
+    text-align: end;
+    .amount {
+      color: color($colors, dark);
+    }
+    .date {
+      font-size: 12.5px;
+    }
+  }
+
+  .wallet-icon-container {
+    width: 37px;
+  }
+
+  .icon-color {
+    width: 2rem;
+    height: 2rem;
+    border-radius: $txp-icon-border-radius;
+    margin: 8px auto;
+  }
+}

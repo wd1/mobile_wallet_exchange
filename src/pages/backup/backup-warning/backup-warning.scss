@@ -1,0 +1,31 @@
+page-backup-warning {
+  text-align: center;
+  ion-header {
+    .toolbar-title, ion-icon {
+      color: color($colors, primary);
+    }
+    .toolbar-background {
+      background-color: transparent;
+    }
+  }
+  p {
+    line-height: 1.6;
+    font-size: 18px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  @extend %onboarding;
+  & > ion-content {
+    background: $onboarding-welcome-bg;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .description {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+

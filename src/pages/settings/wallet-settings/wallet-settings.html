@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{'Wallet Settings'|translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <page-wallet-item [wallet]="wallet"></page-wallet-item>
+  <ion-list>
+    <button ion-item (click)="openWalletName()">
+      <span translate>Name</span>
+      <ion-note item-end>
+        {{walletName}}
+      </ion-note>
+    </button>
+    <button ion-item (click)="openWalletColor()">
+      <span translate>Color</span>
+    </button>
+    <ion-item>
+      <ion-label translate>Hide Balance</ion-label>
+      <ion-toggle [(ngModel)]="hiddenBalance" (ionChange)="hiddenBalanceChange()"></ion-toggle>
+    </ion-item>
+    <ion-item-divider translate>Security</ion-item-divider>
+    <button ion-item (click)="openBackupSettings()">
+      <span translate>Backup</span>
+      <ion-note *ngIf="needsBackup" class="assertive" item-end translate>
+        Needs backup recovery
+      </ion-note>
+    </button>
+    <div *ngIf="canSign">
+      <ion-item>
+        <ion-label [ngClass]="{'disabled': needsBackup}" translate>Request Spending Password</ion-label>
+        <ion-toggle [(ngModel)]="encryptEnabled" (ionChange)="encryptChange()" [disabled]="needsBackup"></ion-toggle>
+      </ion-item>
+      <ion-item-divider text-wrap>
+        <span class="item-text" translate>
+          If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with
+          this wallet will be protected.
+        </span>
+        <a (click)="openSupportSpendingPassword()" translate>Learn more</a>
+        <div margin-top class="assertive item-text" *ngIf="needsBackup" translate>
+          Complete the backup process to use this option
+        </div>
+      </ion-item-divider>
+    </div>
+    <div *ngIf="canSign && touchIdAvailable">
+      <ion-item>
+        <ion-label [ngClass]="{'disabled': needsBackup}" translate>Request Fingerprint</ion-label>
+        <ion-toggle [(ngModel)]="touchIdEnabled" (ionChange)="touchIdChange()"></ion-toggle>
+      </ion-item>
+      <ion-item-divider></ion-item-divider>
+    </div>
+    <button ion-item (click)="openAdvancedSettings()">
+      <span translate>More Options</span>
+    </button>
+    <ion-item-divider></ion-item-divider>
+  </ion-list>
+
+</ion-content>
